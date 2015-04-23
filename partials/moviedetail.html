@@ -1,9 +1,12 @@
-<div class="list" ng-controller='SecondController'>
+<div class="list" ng-controller='SecondController' ng-init="initFirst()">
 
 <div>Movie Detail</div>
     <br>
+    <form ng-submit="submit()" name="form">
+
     <div>Rate this movie: </div>
     <select ng-model="ratingScore">
+        <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -15,8 +18,10 @@
         <option value="9">9</option>
         <option value="10">10</option>
     </select>
-    <button ng-click="rate()" ng-controller='SecondController' type="submit">Submit Rating</button>
-    <button ng-click="refreshRating()" ng-controller='SecondController' type="submit">refreshRating</button>
+    <button ng-click="form.$valid && rate()" type="submit">Submit Rating</button>
+    <button ng-click="calculateRate()" type="submit">Calculate Average Rating</button>
+    </form>
+    <a class="button" ng-href="#/movielist/moviedetail/{{movie.data._id}}/movieupdate">update movie</a>
     {{message}}
 
     <br>
@@ -64,7 +69,6 @@
     <div>Movie awards: {{movie.data.awards}}</div>
     <br>
 
-    <a class="button" ng-href="#/movielist/moviedetail/{{movie.data._id}}/movieupdate">update movie</a>
 
 
     <div>Recommendations:</div>
@@ -75,7 +79,6 @@
         </li>
     </ul>
 
-    <button ng-click="calculateRate()"type="submit">calculate</button>
     {{rateSum}}
     <ul>
         <li ng-repeat="a in avgRating">
@@ -83,13 +86,5 @@
         </li>
     </ul>
     avg = {{result}}
-    {{movieId}}
 
-    <br><br><br>
-    <ul>
-        <li ng-repeat="t in task.data">
-            ▶&nbsp;task name:  {{t.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deadline: {{t.deadline}}
-            <button ng-click="completeTask(t._id)" type="submit">completed</button>
-        </li>
-   </ul>
 </div>

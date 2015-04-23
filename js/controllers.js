@@ -6,7 +6,7 @@ demoControllers.controller('FirstController', ['$scope', 'CommonData'  , functio
     };
 }]);
 
-demoControllers.controller('SecondController', function($scope, CommonData, Movies, $routeParams) {
+demoControllers.controller('SecondController', function($scope, CommonData, Movies, $route, $routeParams) {
     $scope.movieId = $routeParams.id;
 
     CommonData.getMovie($scope.movieId).success(function(detail){
@@ -37,14 +37,14 @@ demoControllers.controller('SecondController', function($scope, CommonData, Movi
 
         CommonData.rate(rating)
             .success(function(data, status) {
-                alert("successfully rated");
                 $scope.status = status;
                 $scope.message = "successfully rated";
+                $route.reload();
             })
             .error(function(data, status) {
-                alert("fail to rate");
                 $scope.status = status;
                 $scope.message = "fail to rate";
+                $route.reload();
             });
     }
 
@@ -81,16 +81,15 @@ demoControllers.controller('SecondController', function($scope, CommonData, Movi
         Movies.put($scope.movie.data._id, movie)
             .success(function(data, status) {
                 $scope.status = status;
-                alert("update userrating");
-                $scope.message = "sucessfully update movie";
+                $scope.message = "successfully update average rating";
+                $route.reload();
             })
             .error(function(data, status) {
                 $scope.status = status;
-                alert("fail to update userrating");
-                $scope.message = "title is already used";
+                $scope.message = "fail to update average rating";
+                $route.reload();
             });
 
-        console.log(movie);
 
         /*
         for (var i = 0; i < temp.length; i++)) {

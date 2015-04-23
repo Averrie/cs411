@@ -1,0 +1,95 @@
+<div class="list" ng-controller='SecondController'>
+
+<div>Movie Detail</div>
+    <br>
+    <div>Rate this movie: </div>
+    <select ng-model="ratingScore">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+    <button ng-click="rate()" ng-controller='SecondController' type="submit">Submit Rating</button>
+    <button ng-click="refreshRating()" ng-controller='SecondController' type="submit">refreshRating</button>
+    {{message}}
+
+    <br>
+    <img ng-src="./images/{{movie.data.imdbID}}.jpg">
+    <div>Movie title: {{movie.data.title}}</div>
+    <br>
+    <div>Movie rank: {{movie.data.rank}}</div>
+    <br>
+    <div>User ratings: {{movie.data.imdbRating}}</div>
+    <br>
+    <div>Movie genre:
+        <ul>
+            <li ng-repeat="g in movie.data.genre">
+                {{g}}
+            </li>
+        </ul>
+    </div>
+    <div>Movie director:
+        <ul>
+            <li ng-repeat="d in movie.data.director">
+                {{d}}
+            </li>
+        </ul>
+    </div>
+    <div>Movie actors:
+        <ul>
+            <li ng-repeat="a in movie.data.actors">
+                {{a}}
+            </li>
+        </ul>
+    </div>
+    <div>Movie plot: {{movie.data.plot}}</div>
+    <br>
+    <div>Movie country:
+        <ul>
+            <li ng-repeat="c in movie.data.country">
+                {{c}}
+            </li>
+        </ul>
+    </div>
+    <div>Movie released: {{movie.data.released}}</div>
+    <br>
+    <div>Movie runtime: {{movie.data.runtime}}</div>
+    <br>
+    <div>Movie awards: {{movie.data.awards}}</div>
+    <br>
+
+    <a class="button" ng-href="#/movielist/moviedetail/{{movie.data._id}}/movieupdate">update movie</a>
+
+
+    <div>Recommendations:</div>
+    <ul>
+        <li ng-repeat="r in recommendations">
+            <img ng-src="./images/{{r.imdbID}}.jpg">
+            <div><a ng-href="#/movielist/moviedetail/{{r._id}}" ng-click="setData(movie._id)" ng-controller='FirstController'>Movie title: {{r.title}}</a></div>
+        </li>
+    </ul>
+
+    <button ng-click="calculateRate()"type="submit">calculate</button>
+    {{rateSum}}
+    <ul>
+        <li ng-repeat="a in avgRating">
+            {{a.rating}}
+        </li>
+    </ul>
+    avg = {{result}}
+    {{movieId}}
+
+    <br><br><br>
+    <ul>
+        <li ng-repeat="t in task.data">
+            ▶&nbsp;task name:  {{t.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deadline: {{t.deadline}}
+            <button ng-click="completeTask(t._id)" type="submit">completed</button>
+        </li>
+   </ul>
+</div>

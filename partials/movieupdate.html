@@ -1,0 +1,66 @@
+<div class="list" ng-controller='MovieUpdateController'>
+
+movieupdate
+    <form ng-submit="submit()" name="form">
+    <div class="required">
+        title: *<input type="text" name="title" ng-model="movie.title" required/>
+    </div>
+
+    <div>genre: </div>
+    <select multiple ng-model="movie.genre">
+
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Animation">Animation</option>
+        <option value="Biography">Biography</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Crime">Crime</option>
+        <option value="Drama">Drama</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Family">Family</option>
+        <option value="Horror">Horror</option>
+        <option value="Music">Music</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Thriller">Thriller</option>
+        <option value="War">War</option>
+        <option value="Western">Western</option>
+    </select>
+
+    <div class="required">
+        director: <input type="text" name="director" ng-model="movie.director"/>
+    </div>
+
+    <div class="required">
+        actors: <input type="text" name="actors" ng-model="movie.actors"/>
+    </div>
+
+        <div class="required">
+            plot: <input type="text" name="plot" ng-model="movie.plot"/>
+        </div>
+
+        <div class="required">
+            country: <input type="text" name="country" ng-model="movie.country"/>
+        </div>
+
+        <div class="required">
+            released: <input type="text" name="released" ng-model="movie.released"/>
+        </div>
+
+        <div class="required">
+            runtime: <input type="text" name="runtime" ng-model="movie.runtime"/>
+        </div>
+
+        <div class="required">
+            awards: <input type="text" name="awards" ng-model="movie.awards"/>
+        </div>
+
+
+    <div>
+    <button ng-click="form.$valid && movieupdate()" type="submit">Submit</button>
+    <a class="button" ng-click="refreshMovie()" ng-controller='SecondController' type="submit" ng-href="#/movielist/moviedetail/{{movieId}}">Back</a>
+    {{message}}
+    </div>
+    </form>
+</div>

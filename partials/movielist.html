@@ -1,0 +1,36 @@
+<div class="list" ng-controller='MovieListController'>
+
+    <a class="button" href="#/movielist/addmovie">add movie</a>
+    <ul>
+		<li ng-repeat="user in users.data">
+            <a href="#/userlist/userDetail" ng-click="setData(user._id, user.pendingTasks)" ng-controller='FirstController'>user: {{user.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: {{user.email}}</a>
+            <button ng-click="deleteuser(user._id)" type="submit">delete user</button>
+            <br><br>
+        </li>
+	</ul>
+
+    <div>Search: <input ng-model="query"></div>
+    <div>Sort by:</div>
+
+    <select ng-model="orderProp">
+        <option value="rank">Rank</option>
+        <option value="title">Title</option>
+        <option value="userRating">User Rating</option>
+    </select>
+
+
+    <th><a href="" ng-click="predicate = orderProp; reverse=false">ascending</a></th>
+    <th><a href="" ng-click="predicate = orderProp; reverse=true">descending</a></th>
+
+    <br>
+    <br>
+
+    <ul>
+        <li ng-repeat="movie in movies | filter:{title:query} | orderBy:orderProp:reverse">
+            <img ng-src="./images/{{movie.imdbID}}.jpg">
+            <div><a ng-href="#/movielist/moviedetail/{{movie._id}}" ng-click="setData(movie._id)" ng-controller='FirstController'>Title : {{movie.title}}</a></div>
+            <div>Rank : {{movie.rank}}</div>
+            <button ng-click="deletemovie(movie._id)" type="submit">delete movie</button>
+        </li>
+    </ul>
+</div>

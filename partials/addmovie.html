@@ -1,0 +1,24 @@
+<div class="list" ng-controller='AddMovieController'>
+    add user
+    <form ng-submit="submit()" name="form">
+
+        <div class="required">
+            title: *<input type="text" name="title" ng-model="movie.title" required/>
+        </div>
+
+        <div class="required">
+            rank: *<input type="number" name="rank" ng-model="movie.rank" required/>
+        </div>
+
+        <div class="required">
+            genre: *<input type="text" name="genre" ng-model="movie.genre" required/>
+        </div>
+
+        <div>
+            <button ng-click="form.$valid && addmovie()" type="submit">Submit</button>
+            <a class="button" type="submit" href="#/movielist">Back</a>
+            {{message}}
+        </div>
+    </form>
+
+</div>
